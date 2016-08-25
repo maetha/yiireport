@@ -31,11 +31,13 @@
                 'encodeLabels'=> FALSE,
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
-                    ['label' => '<i class="fa fa-vk" aria-hidden="true"></i> Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => '<i class="fa fa-google-wallet" aria-hidden="true"></i> กลุ่มงาน', 'icon' => 'fa fa-file-code-o', 'url' => ['/groups/index']],
-                    ['label' => '<i class="fa fa-ils" aria-hidden="true"></i> หน่วยงาน', 'icon' => 'fa fa-dashboard', 'url' => ['/departments/index']],
-                    ['label' => '<i class="fa fa-stumbleupon" aria-hidden="true"></i> เพิ่มหน่วยงาน', 'icon' => 'fa fa-dashboard', 'url' => ['/depgroups/create']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Menu', 'options' => ['class' => 'header']],
+                    ['label' => '<i class="fa-viadeo" aria-hidden="true"></i> กำหนดสิทธิ์', 'url' => ['admin/assignment']],
+                    ['label' => '<i class="fa fa-google-wallet" aria-hidden="true"></i> กลุ่มงาน', 'url' => ['/groups/index']],
+                    ['label' => '<i class="fa fa-ils" aria-hidden="true"></i> หน่วยงาน', 'url' => ['/departments/index']],
+                    ['label' => '<i class="fa fa-stumbleupon" aria-hidden="true"></i> เพิ่มหน่วยงาน', 'url' => ['departments/create']],
+                    ['label' => '<i class="fa fa-dashboard" aria-hidden="true"></i> รายงาน', 'url' => ['hosxpreport/reports/opddiag']],
+                    ['label' => 'Login', 'url' => ['/user/security/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'Same tools',
                         'icon' => 'fa fa-share',
