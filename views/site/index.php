@@ -11,7 +11,7 @@ $this->title = 'My Yii Application';
         <h1>MAETHA HOSPITAL</h1>
         <h1> </h1>
         <h1> </h1>
-        <p><a class="btn btn-lg btn-success" href="http://www.maethahealth.com">MENU WEBSITE</a></p>
+        <p><a class="btn btn-lg btn-success" href="http://www.maethahealth.com">WEBSITE</a></p>
     </div>
 <div class="well-transparent">
 <div class="text-center" style="margin-top: 150px;" >

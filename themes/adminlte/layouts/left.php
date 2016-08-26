@@ -1,73 +1,63 @@
+<?php
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\helpers\Url;
+use dektrium\user\models\User;
+?>
+
 <aside class="main-sidebar">
 
     <section class="sidebar">
-
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-            </div>
-            <div class="pull-left info">
-                <p>Alexander Pierce</p>
-
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-
-        <?= dmstr\widgets\Menu::widget(
-            [
-                'encodeLabels'=> FALSE,
-                'options' => ['class' => 'sidebar-menu'],
-                'items' => [
-                    ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => '<i class="fa-viadeo" aria-hidden="true"></i> กำหนดสิทธิ์', 'url' => ['admin/assignment']],
-                    ['label' => '<i class="fa fa-google-wallet" aria-hidden="true"></i> กลุ่มงาน', 'url' => ['/groups/index']],
-                    ['label' => '<i class="fa fa-ils" aria-hidden="true"></i> หน่วยงาน', 'url' => ['/departments/index']],
-                    ['label' => '<i class="fa fa-stumbleupon" aria-hidden="true"></i> เพิ่มหน่วยงาน', 'url' => ['departments/create']],
-                    ['label' => '<i class="fa fa-dashboard" aria-hidden="true"></i> รายงาน', 'url' => ['hosxpreport/reports/opddiag']],
-                    ['label' => 'Login', 'url' => ['/user/security/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
-                        'label' => 'Same tools',
-                        'icon' => 'fa fa-share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'fa fa-circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'fa fa-circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'fa fa-circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
+        
+        <?=
+        Nav::widget(
+                [
+                    'encodeLabels' => false,
+                    'options' => ['class' => 'sidebar-menu'],
+                    'items' => [
+                        '<li class="header"></li>',
+                        Yii::$app->user->isGuest ?
+                                ['label' => '<i class="glyphicon glyphicon-log-in"></i> เข้าสู่ระบบ', 'url' => ['/user/security/login']] :
+                                ['label' => '<i class="glyphicon glyphicon-user"></i> (' . Yii::$app->user->identity->username . ')', 'items' => [
+//                    ['label' => 'Profile', 'url' => ['/user/settings/profile']],
+//                    ['label' => 'ผู้ใช้งาน', 'url' => ['/user/settings/account']],
+                                ['label' => 'Logout', 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']],
+                            ]],
                     ],
-                ],
-            ]
-        ) ?>
+                ]
+        );
+        ?>
+        <ul class="sidebar-menu">
+            <li class="treeview"> 
+                <a href="#">
+                    <i class="glyphicon glyphicon-cog"></i> <span>ตั้งค่าระบบ</span>
+                    <i class="fa pull-right fa-angle-down"></i>
+                </a>
+                <ul class="treeview-menu">
+                   <li><a href="<?php echo Url::to(['admin/assignment']); ?>"><i class="fa fa-circle text-green"></i> <span> จัดการผู้ใช้งาน</span> <small class="label pull-right bg-blue"></small></a> </li>
+                    
+                </ul>
+        </ul>
+        <ul class="sidebar-menu">
 
+            <li class="header"><h5><div class="label label-default"> เมนู</div></h5></li>            
+            <li><a href="<?php echo Url::to(['groups/index']); ?>"><i class="fa fa-circle text-aqua"></i> <span> กลุ่มงาน</span><small class="label pull-right bg-red"></small></a></li> 
+            <li><a href="<?php echo Url::to(['departments/index']); ?>"><i class="fa fa-circle text-aqua"></i> <span> หน่วยงาน</span><small class="label pull-right bg-red"></small></a></li> 
+            <li><a href="<?php echo Url::to(['departments/create']); ?>"><i class="fa fa-circle text-aqua"></i> <span> เพิ่มหน่วยงาน</span><small class="label pull-right bg-red"></small></a></li> 
+
+        </ul>
+        
+        <ul class="sidebar-menu">
+            <li class="treeview active"> 
+                <a href="#">
+                    <i class="glyphicon glyphicon-cog"></i> <span>รายงาน</span>
+                    <i class="fa pull-right fa-angle-down"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo Url::to(['/hosxpreport/reports/opddiag']); ?>"><i class="fa fa-circle text-green"></i> <span> 20อันดับโรคOPD</span> <small class="label pull-right bg-blue"></small></a> </li>
+                    
+                </ul>
+        </ul>
     </section>
 
 </aside>
